@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <parent>
+      <groupId>de.edeka.dpp.lunar</groupId>
+      <artifactId>sonar-dependency-version</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+      <relativePath>..</relativePath>
+   </parent>
+   <artifactId>sonar-dependency-version-plugin</artifactId>
+   <packaging>sonar-plugin</packaging>
+   <name>Dependency-Version Plugin for SonarQube</name>
+   <url>https://digital.edeka</url>
+
+   <properties>
+      <sonar.version>7.6</sonar.version>
+      <!-- Configuration for sonar-packaging-maven-plugin -->
+      <sonar.pluginClass>org.sonar.dependencyversion.DependencyVersionPlugin</sonar.pluginClass>
+      <sonar.pluginName>Dependency Version</sonar.pluginName>
+   </properties>
+
+   <developers>
+      <developer>
+         <name>Ferdi Güran</name>
+         <email>dpp@edeka.de</email>
+         <url>https://digital.edeka</url>
+      </developer>
+      <developer>
+         <name>Maksat Annageldyev</name>
+         <email>dpp@edeka.de</email>
+         <url>https://digital.edeka</url>
+      </developer>
+   </developers>
+
+   <dependencies>
+      <dependency>
+         <groupId>com.fasterxml.jackson.dataformat</groupId>
+         <artifactId>jackson-dataformat-xml</artifactId>
+         <version>2.9.8</version>
+      </dependency>
+
+      <dependency>
+         <groupId>org.sonarsource.sonarqube</groupId>
+         <artifactId>sonar-plugin-api</artifactId>
+         <version>${sonar.version}</version>
+         <scope>provided</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.sonarsource.analyzer-commons</groupId>
+         <artifactId>sonar-xml-parsing</artifactId>
+         <version>1.10.2.456</version>
+      </dependency>
+      <dependency>
+         <groupId>org.apache.commons</groupId>
+         <artifactId>commons-lang3</artifactId>
+         <version>3.8.1</version>
+      </dependency>
+      <dependency>
+         <groupId>com.github.spotbugs</groupId>
+         <artifactId>spotbugs-annotations</artifactId>
+         <version>3.1.12</version>
+         <scope>provided</scope>
+      </dependency>
+      <dependency>
+         <groupId>ch.qos.logback</groupId>
+         <artifactId>logback-classic</artifactId>
+         <version>1.2.3</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>com.google.guava</groupId>
+         <artifactId>guava</artifactId>
+         <version>27.1-jre</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.junit.jupiter</groupId>
+         <artifactId>junit-jupiter-api</artifactId>
+         <version>5.4.0</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.mockito</groupId>
+         <artifactId>mockito-junit-jupiter</artifactId>
+         <version>2.25.0</version>
+         <scope>test</scope>
+      </dependency>
+   </dependencies>
+</project>
