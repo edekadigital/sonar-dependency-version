@@ -38,9 +38,6 @@ class DependencyVersionSensorTest {
     inputFile = TestInputFileBuilder.create("projectKey", "report/pom.xml").build();
     this.pathResolver = mock(PathResolver.class);
     fileSystem = mock(FileSystem.class, RETURNS_DEEP_STUBS);
-
-    // when(fileSystem.baseDir()).thenReturn()
-
     this.sensor = new DependencyVersionSensor(this.fileSystem, this.pathResolver, this.inputFile);
 
     // Mock config

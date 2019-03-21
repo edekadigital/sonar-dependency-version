@@ -54,7 +54,7 @@ public class DependencyVersionSensor implements ProjectSensor {
   private final InputFile inputFile;
   private final FileSystem fileSystem;
   private final PathResolver pathResolver;
-  private final HashMap<String, Pair<XmlTextRange, XmlTextRange>> textRanges;
+  private HashMap<String, Pair<XmlTextRange, XmlTextRange>> textRanges;
   private int totalOutdatedDependencies;
   private int nextIncremetalAvailable;
   private int nextVersionAlailable;
@@ -73,8 +73,7 @@ public class DependencyVersionSensor implements ProjectSensor {
     this(
         fileSystem,
         pathResolver,
-        Objects.requireNonNull(
-            fileSystem.inputFile(fileSystem.predicates().hasPath(POM_PATH_DEFAULT))));
+        fileSystem.inputFile(fileSystem.predicates().hasPath(POM_PATH_DEFAULT)));
   }
 
   /**
@@ -89,7 +88,6 @@ public class DependencyVersionSensor implements ProjectSensor {
     this.inputFile = inputFile;
     this.fileSystem = fileSystem;
     this.pathResolver = pathResolver;
-    textRanges = getTextRanges();
   }
 
   /**
@@ -112,6 +110,7 @@ public class DependencyVersionSensor implements ProjectSensor {
     Profiler profiler = Profiler.create(LOGGER);
     profiler.startInfo("Process Dependency Version report");
     try {
+      this.textRanges = getTextRanges(context);
       DependencyUpdatesReport report = parseReport(context);
       Summary summary = report.getSummary();
       List<Dependency> dependencies = report.getDependencies();
@@ -134,25 +133,26 @@ public class DependencyVersionSensor implements ProjectSensor {
     profiler.stopInfo();
   }
 
-  private HashMap<String, Pair<XmlTextRange, XmlTextRange>> getTextRanges() {
-    XmlFile xmlFile;
+  private HashMap<String, Pair<XmlTextRange, XmlTextRange>> getTextRanges(SensorContext context) {
     HashMap<String, Pair<XmlTextRange, XmlTextRange>> hashMap = new HashMap<>();
-    try {
-      xmlFile = create(this.inputFile);
-      NodeList nodes = xmlFile.getDocument().getElementsByTagName("dependency");
-      for (int i = 0; i < nodes.getLength(); i++) {
-        Element element = (Element) nodes.item(i);
-        XmlTextRange start = XmlFile.startLocation(element);
-        XmlTextRange end = XmlFile.endLocation(element);
-        String id =
-            String.format(
-                "%s:%s",
-                element.getElementsByTagName("groupId").item(0).getTextContent(),
-                element.getElementsByTagName("artifactId").item(0).getTextContent());
-        hashMap.put(id, Pair.of(start, end));
+    if (inputFile != null) {
+      try {
+        XmlFile xmlFile = create(this.inputFile);
+        NodeList nodes = xmlFile.getDocument().getElementsByTagName("dependency");
+        for (int i = 0; i < nodes.getLength(); i++) {
+          Element element = (Element) nodes.item(i);
+          XmlTextRange start = XmlFile.startLocation(element);
+          XmlTextRange end = XmlFile.endLocation(element);
+          String id =
+              String.format(
+                  "%s:%s",
+                  element.getElementsByTagName("groupId").item(0).getTextContent(),
+                  element.getElementsByTagName("artifactId").item(0).getTextContent());
+          hashMap.put(id, Pair.of(start, end));
+        }
+      } catch (IOException e) {
+        LOGGER.info("pom.xml does not exist.");
       }
-    } catch (IOException e) {
-      LOGGER.info("pom.xml does not exist.");
     }
     return hashMap;
   }
@@ -257,7 +257,6 @@ public class DependencyVersionSensor implements ProjectSensor {
    * @param dependency dependency from report
    */
   private void addIssue(SensorContext context, Dependency dependency) {
-
     NewIssue newIssue =
         context
             .newIssue()
@@ -265,26 +264,21 @@ public class DependencyVersionSensor implements ProjectSensor {
             .overrideSeverity(Severity.MAJOR);
 
     NewIssueLocation location = newIssue.newLocation().on(context.project());
+    Pair<XmlTextRange, XmlTextRange> textRange =
+        textRanges.get(String.format("%s:%s", dependency.getGroupId(), dependency.getArtifactId()));
 
-    if (Objects.nonNull(inputFile)) {
-      Pair<XmlTextRange, XmlTextRange> textRange =
-          textRanges.get(
-              String.format("%s:%s", dependency.getGroupId(), dependency.getArtifactId()));
-
-      if (Objects.nonNull(textRange)) {
-        location =
-            newIssue
-                .newLocation()
-                .on(inputFile)
-                .at(
-                    inputFile.newRange(
-                        textRange.getLeft().getStartLine(),
-                        textRange.getLeft().getStartColumn(),
-                        textRange.getRight().getEndLine(),
-                        textRange.getRight().getEndColumn()));
-      }
+    if (Objects.nonNull(inputFile) && Objects.nonNull(textRange)) {
+      location =
+          newIssue
+              .newLocation()
+              .on(inputFile)
+              .at(
+                  inputFile.newRange(
+                      textRange.getLeft().getStartLine(),
+                      textRange.getLeft().getStartColumn(),
+                      textRange.getRight().getEndLine(),
+                      textRange.getRight().getEndColumn()));
     }
-
     newIssue.at(location.message(formatDescription(dependency))).save();
   }
   /**

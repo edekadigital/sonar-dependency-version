@@ -35,7 +35,8 @@ public class DependencyVersionConfiguration {
         PropertyDefinition.builder(DependencyVersionConstants.DEPENDENCY_INCLUDES)
             .subCategory(DependencyVersionConstants.SUB_CATEGORY_CONTROLLING)
             .name("Includes")
-            .description("The includes parameters can restrict which dependencies should be processed. (groupId:artifactId:type:classifier)")
+            .description(
+                "The includes parameters can restrict which dependencies should be processed. (groupId:artifactId:type:classifier)")
             .type(PropertyType.REGULAR_EXPRESSION)
             .build());
   }
