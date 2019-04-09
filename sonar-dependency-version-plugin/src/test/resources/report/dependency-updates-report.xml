@@ -1,0 +1,102 @@
+<DependencyUpdatesReport>
+   <summary>
+      <usingLastVersion>6</usingLastVersion>
+      <nextVersionAlailable>0</nextVersionAlailable>
+      <nextIncremetalAvailable>1</nextIncremetalAvailable>
+      <nextMinorAvailable>0</nextMinorAvailable>
+      <nextMajorAvailable>1</nextMajorAvailable>
+   </summary>
+   <dependencyManagements>
+   </dependencyManagements>
+   <dependencies>
+      <dependency>
+         <groupId>ch.qos.logback</groupId>
+         <artifactId>logback-classic</artifactId>
+         <scope>test</scope>
+         <classifier>null</classifier>
+         <type>jar</type>
+         <currentVersion>1.2.3</currentVersion>
+         <nextVersion>1.3.0-alpha0</nextVersion>
+         <incrementals>
+            <incremental>1.3.0-alpha0</incremental>
+            <incremental>1.3.0-alpha1</incremental>
+            <incremental>1.3.0-alpha2</incremental>
+            <incremental>1.3.0-alpha3</incremental>
+            <incremental>1.3.0-alpha4</incremental>
+         </incrementals>
+         <status>incremental available</status>
+      </dependency>
+      <dependency>
+         <groupId>com.github.spotbugs</groupId>
+         <artifactId>spotbugs-annotations</artifactId>
+         <scope>provided</scope>
+         <classifier>null</classifier>
+         <type>jar</type>
+         <currentVersion>3.1.12</currentVersion>
+         <status>no new available</status>
+      </dependency>
+      <dependency>
+         <groupId>com.google.guava</groupId>
+         <artifactId>guava</artifactId>
+         <scope>test</scope>
+         <classifier>null</classifier>
+         <type>jar</type>
+         <currentVersion>26.0-jre</currentVersion>
+         <nextVersion>27.0-android</nextVersion>
+         <majors>
+            <major>27.0-android</major>
+            <major>27.0-jre</major>
+            <major>27.0.1-android</major>
+            <major>27.0.1-jre</major>
+            <major>27.1-android</major>
+            <major>27.1-jre</major>
+         </majors>
+         <status>major available</status>
+      </dependency>
+      <dependency>
+         <groupId>org.apache.commons</groupId>
+         <artifactId>commons-lang3</artifactId>
+         <scope>compile</scope>
+         <classifier>null</classifier>
+         <type>jar</type>
+         <currentVersion>3.8.1</currentVersion>
+         <status>no new available</status>
+      </dependency>
+      <dependency>
+         <groupId>org.junit.jupiter</groupId>
+         <artifactId>junit-jupiter-api</artifactId>
+         <scope>test</scope>
+         <classifier>null</classifier>
+         <type>jar</type>
+         <currentVersion>5.4.0</currentVersion>
+         <status>no new available</status>
+      </dependency>
+      <dependency>
+         <groupId>org.mockito</groupId>
+         <artifactId>mockito-junit-jupiter</artifactId>
+         <scope>test</scope>
+         <classifier>null</classifier>
+         <type>jar</type>
+         <currentVersion>2.25.0</currentVersion>
+         <status>no new available</status>
+      </dependency>
+      <dependency>
+         <groupId>org.sonarsource.analyzer-commons</groupId>
+         <artifactId>sonar-xml-parsing</artifactId>
+         <scope>compile</scope>
+         <classifier>null</classifier>
+         <type>jar</type>
+         <currentVersion>1.10.2.456</currentVersion>
+         <status>no new available</status>
+      </dependency>
+      <dependency>
+         <groupId>org.sonarsource.sonarqube</groupId>
+         <artifactId>sonar-plugin-api</artifactId>
+         <scope>provided</scope>
+         <classifier>null</classifier>
+         <type>jar</type>
+         <currentVersion>7.6</currentVersion>
+         <status>no new available</status>
+      </dependency>
+   </dependencies>
+</DependencyUpdatesReport>

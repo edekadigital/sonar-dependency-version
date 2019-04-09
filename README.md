@@ -1,2 +1,2 @@
 # sonar-dependency-version
-SonarQube Plugin for dependency checks
+SonarQube Plugin for dependency versions report

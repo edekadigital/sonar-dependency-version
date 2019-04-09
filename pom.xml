@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <parent>
+      <groupId>org.sonarsource.parent</groupId>
+      <artifactId>parent</artifactId>
+      <version>49</version>
+   </parent>
+   <groupId>de.edeka.dpp.lunar</groupId>
+   <artifactId>sonar-dependency-version</artifactId>
+   <version>0.0.1-SNAPSHOT</version>
+   <packaging>pom</packaging>
+   <name>Dependency-Version for SonarQube</name>
+   <description>Integrates Dependency-Version reports into SonarQube</description>
+   <inceptionYear>2019</inceptionYear>
+
+   <organization>
+      <name>EDEKA DIGITAL GmbH</name>
+      <url>https://www.digital.edeka/</url>
+   </organization>
+
+   <developers>
+      <developer>
+         <name>Ferdi Güran</name>
+         <email>dpp@edeka.de</email>
+         <url>https://digital.edeka</url>
+      </developer>
+      <developer>
+         <name>Maksat Annageldyev</name>
+         <email>dpp@edeka.de</email>
+         <url>https://digital.edeka</url>
+      </developer>
+   </developers>
+
+   <licenses>
+      <license>
+         <name>GNU LGPL 3</name>
+         <url>http://www.gnu.org/licenses/lgpl.txt</url>
+         <distribution>repo</distribution>
+      </license>
+   </licenses>
+
+   <modules>
+      <module>sonar-dependency-version-plugin</module>
+   </modules>
+
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.2</version>
+            <executions>
+               <execution>
+                  <id>pre-unit-test</id>
+                  <goals>
+                     <goal>prepare-agent</goal>
+                  </goals>
+               </execution>
+            </executions>
+         </plugin>
+         <plugin>
+            <artifactId>maven-release-plugin</artifactId>
+            <version>2.3.2</version>
+            <configuration>
+               <autoVersionSubmodules>true</autoVersionSubmodules>
+               <useReleaseProfile>false</useReleaseProfile>
+               <releaseProfiles>release</releaseProfiles>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
+
+</project>

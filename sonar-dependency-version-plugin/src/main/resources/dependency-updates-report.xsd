@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:e="http://www.digital.edeka/sonar/e/2019/03"
+           targetNamespace="http://www.digital.edeka/sonar/e/2019/03" elementFormDefault="unqualified">
+   <xs:element name="DependencyUpdatesReport">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="summary">
+               <xs:complexType>
+                  <xs:sequence>
+                     <xs:element name="usingLastVersion" type="xs:int"/>
+                     <xs:element name="nextVersionAlailable" type="xs:int"/>
+                     <xs:element name="nextIncremetalAvailable" type="xs:int"/>
+                     <xs:element name="nextMinorAvailable" type="xs:int"/>
+                     <xs:element name="nextMajorAvailable" type="xs:int"/>
+                  </xs:sequence>
+               </xs:complexType>
+            </xs:element>
+            <xs:element name="dependencyManagements">
+               <xs:complexType>
+                  <xs:sequence>
+                     <xs:element name="dependencyManagement" maxOccurs="unbounded" type="e:dependency"/>
+                  </xs:sequence>
+               </xs:complexType>
+            </xs:element>
+            <xs:element name="dependencies">
+               <xs:complexType>
+                  <xs:sequence>
+                     <xs:element name="dependency" maxOccurs="unbounded" type="e:dependency"/>
+                  </xs:sequence>
+               </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+
+   <xs:complexType name="incrementals">
+      <xs:sequence>
+         <xs:element maxOccurs="unbounded" name="incremental" type="xs:string"/>
+      </xs:sequence>
+   </xs:complexType>
+
+   <xs:complexType name="minors">
+      <xs:sequence>
+         <xs:element maxOccurs="unbounded" name="minor" type="xs:string"/>
+      </xs:sequence>
+   </xs:complexType>
+
+   <xs:complexType name="majors">
+      <xs:sequence>
+         <xs:element maxOccurs="unbounded" name="major" type="xs:string"/>
+      </xs:sequence>
+   </xs:complexType>
+
+   <xs:complexType name="dependency">
+      <xs:sequence>
+         <xs:element name="groupId" type="xs:string"/>
+         <xs:element name="artifactId" type="xs:string"/>
+         <xs:element name="scope" type="xs:string"/>
+         <xs:element name="classifier" type="xs:string"/>
+         <xs:element name="type" type="xs:string"/>
+         <xs:element name="currentVersion" type="xs:string"/>
+         <xs:element name="nextVersion" type="xs:string"/>
+         <xs:element name="incrementals" minOccurs="0" type="e:incrementals"/>
+         <xs:element name="minors" minOccurs="0" type="e:minors"/>
+         <xs:element name="majors" minOccurs="0" type="e:majors"/>
+         <xs:element name="status" type="xs:string"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
