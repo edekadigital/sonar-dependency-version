@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
 import org.sonar.api.server.rule.RulesDefinition;
 
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
 import static org.sonar.dependencyversion.base.DependencyVersionConstants.*;
 

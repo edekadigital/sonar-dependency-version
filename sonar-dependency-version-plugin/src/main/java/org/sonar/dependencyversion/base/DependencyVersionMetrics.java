@@ -25,26 +25,26 @@ public class DependencyVersionMetrics implements Metrics {
   private static final String TOTAL_OUTDATED_DEPENDENCIES_KEY = "totalOutdatedDependencies";
   public static final Metric<Integer> TOTAL_OUTDATED_DEPENDENCIES =
       new Metric.Builder(
-              TOTAL_OUTDATED_DEPENDENCIES_KEY, "Total Outdeted Dependencies", Metric.ValueType.INT)
+              TOTAL_OUTDATED_DEPENDENCIES_KEY, "Total Outdated Dependencies", Metric.ValueType.INT)
           .setDomain(DependencyVersionMetrics.DOMAIN)
-          .setDescription("Total Outdeted Dependencies")
+          .setDescription("Total Outdated Dependencies")
           .setDirection(Metric.DIRECTION_WORST)
           .setQualitative(Boolean.FALSE)
           .setHidden(false)
           .create();
 
-  private static final String NEXT_INCREMENTAL_AVAILABLE_KEY = "nextIncremetalAvailable";
+  private static final String NEXT_INCREMENTAL_AVAILABLE_KEY = "nextIncrementalAvailable";
   public static final Metric<Integer> NEXT_INCREMENTAL_AVAILABLE =
       new Metric.Builder(
-              NEXT_INCREMENTAL_AVAILABLE_KEY, "Next Incremetal Available", Metric.ValueType.INT)
+              NEXT_INCREMENTAL_AVAILABLE_KEY, "Next Incremental Available", Metric.ValueType.INT)
           .setDomain(DependencyVersionMetrics.DOMAIN)
-          .setDescription("Next Incremetal Available")
+          .setDescription("Next Incremental Available")
           .setDirection(Metric.DIRECTION_WORST)
           .setQualitative(Boolean.FALSE)
           .setHidden(false)
           .create();
 
-  private static final String NEXT_VERSION_AVAILABLE_KEY = "nextVersionAAvailable";
+  private static final String NEXT_VERSION_AVAILABLE_KEY = "nextVersionAvailable";
   public static final Metric<Integer> NEXT_VERSION_AVAILABLE =
       new Metric.Builder(NEXT_VERSION_AVAILABLE_KEY, "Next Version Available", Metric.ValueType.INT)
           .setDomain(DependencyVersionMetrics.DOMAIN)

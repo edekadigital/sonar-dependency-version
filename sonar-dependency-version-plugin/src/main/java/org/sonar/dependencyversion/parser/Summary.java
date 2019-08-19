@@ -3,8 +3,8 @@ package org.sonar.dependencyversion.parser;
 public class Summary {
 
   private int usingLastVersion;
-  private int nextVersionAlailable;
-  private int nextIncremetalAvailable;
+  private int nextVersionAvailable;
+  private int nextIncrementalAvailable;
   private int nextMinorAvailable;
   private int nextMajorAvailable;
 
@@ -16,20 +16,20 @@ public class Summary {
     this.usingLastVersion = value;
   }
 
-  public int getNextVersionAlailable() {
-    return nextVersionAlailable;
+  public int getNextVersionAvailable() {
+    return nextVersionAvailable;
   }
 
-  public void setNextVersionAlailable(int value) {
-    this.nextVersionAlailable = value;
+  public void setnextVersionAvailable(int value) {
+    this.nextVersionAvailable = value;
   }
 
-  public int getNextIncremetalAvailable() {
-    return nextIncremetalAvailable;
+  public int getNextIncrementalAvailable() {
+    return nextIncrementalAvailable;
   }
 
-  public void setNextIncremetalAvailable(int value) {
-    this.nextIncremetalAvailable = value;
+  public void setnextIncrementalAvailable(int value) {
+    this.nextIncrementalAvailable = value;
   }
 
   public int getNextMinorAvailable() {

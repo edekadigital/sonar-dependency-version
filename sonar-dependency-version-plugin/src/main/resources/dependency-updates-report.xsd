@@ -8,8 +8,8 @@
                <xs:complexType>
                   <xs:sequence>
                      <xs:element name="usingLastVersion" type="xs:int"/>
-                     <xs:element name="nextVersionAlailable" type="xs:int"/>
-                     <xs:element name="nextIncremetalAvailable" type="xs:int"/>
+                     <xs:element name="nextVersionAvailable" type="xs:int"/>
+                     <xs:element name="nextIncrementalAvailable" type="xs:int"/>
                      <xs:element name="nextMinorAvailable" type="xs:int"/>
                      <xs:element name="nextMajorAvailable" type="xs:int"/>
                   </xs:sequence>
