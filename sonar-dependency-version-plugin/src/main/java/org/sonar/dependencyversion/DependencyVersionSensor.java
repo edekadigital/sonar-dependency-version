@@ -56,8 +56,8 @@ public class DependencyVersionSensor implements ProjectSensor {
   private final PathResolver pathResolver;
   private HashMap<String, Pair<XmlTextRange, XmlTextRange>> textRanges;
   private int totalOutdatedDependencies;
-  private int nextIncremetalAvailable;
-  private int nextVersionAlailable;
+  private int nextIncrementalAvailable;
+  private int nextVersionAvailable;
   private int nextMinorAvailable;
   private int nextMajorAvailable;
   private int totalDependencies;
@@ -115,8 +115,8 @@ public class DependencyVersionSensor implements ProjectSensor {
       Summary summary = report.getSummary();
       List<Dependency> dependencies = report.getDependencies();
       this.totalDependencies = dependencies.size();
-      this.nextIncremetalAvailable = summary.getNextIncremetalAvailable();
-      this.nextVersionAlailable = summary.getNextVersionAlailable();
+      this.nextIncrementalAvailable = summary.getNextIncrementalAvailable();
+      this.nextVersionAvailable = summary.getNextVersionAvailable();
       this.nextMinorAvailable = summary.getNextMinorAvailable();
       this.nextMajorAvailable = summary.getNextMajorAvailable();
       this.usingLastVersion = summary.getUsingLastVersion();
@@ -180,14 +180,14 @@ public class DependencyVersionSensor implements ProjectSensor {
         .<Integer>newMeasure()
         .forMetric(DependencyVersionMetrics.NEXT_INCREMENTAL_AVAILABLE)
         .on(context.project())
-        .withValue(nextIncremetalAvailable)
+        .withValue(nextIncrementalAvailable)
         .save();
 
     context
         .<Integer>newMeasure()
         .forMetric(DependencyVersionMetrics.NEXT_VERSION_AVAILABLE)
         .on(context.project())
-        .withValue(nextVersionAlailable)
+        .withValue(nextVersionAvailable)
         .save();
 
     context
